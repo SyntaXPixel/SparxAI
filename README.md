@@ -36,7 +36,7 @@ venv\Scripts\activate    # Windows
 Run the backend server:
 
 ```bash
-uvicorn backend.server:app --reload
+uvicorn backend:app --reload
 ```
 
 - The API will run at: **http://127.0.0.1:8000**
