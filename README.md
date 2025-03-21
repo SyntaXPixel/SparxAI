@@ -4,4 +4,8 @@ SparxAI is an open-source AI project designed to expand artificial intelligence 
 
 **Powered by [LexicaAPI](https://lexica.qewertyy.dev/)**
 
-SparxAi utilizes **LexicaAPI** for AI-powered image generation and search functionalities.  
+SparxAi utilizes **LexicaAPI** created by Qewertyy which provides an API for AI-driven services  
+
+**Content Attribution** 
+
+All **response content** generated using LexicaAPI **belongs to Lexica and its creator, Qewertyy**. SparxAi only serves as an interface for accessing this API and does not claim ownership of the generated content.
