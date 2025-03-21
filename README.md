@@ -8,4 +8,4 @@ SparxAi utilizes **LexicaAPI** created by Qewertyy which provides an API for AI-
 
 **Content Attribution** 
 
-All **response content** generated using LexicaAPI **belongs to Lexica and its creator, Qewertyy**. SparxAi only serves as an interface for accessing this API and does not claim ownership of the generated content.
+All **response content** generated using LexicaAPI **belongs its creator, [Qewertyy](https://github.com/QEWERTYY)**. SparxAi only serves as an interface for accessing this API and does not claim ownership of the generated content.
