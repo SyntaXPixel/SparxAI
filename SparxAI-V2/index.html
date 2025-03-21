@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Sparx AI</title>
+    <style>
+        body { height: 100%; margin: 0; font-family: Arial, sans-serif; text-align: center;  
+        background-image: url(img/background.jpg); background-repeat: no-repeat;
+        background-size: cover;
+        }
+        #chatbox { width: 80%; height: 400px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)); 
+            overflow-y: auto; padding: 10px; margin: auto;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.205); }
+            
+
+        input {width: 50%;
+            height: 3vh;
+            font-size: 18px;
+            padding: 10px;
+            margin-top: 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)); 
+            border: 1px solid #ffc3fa;
+            color: #ffffff;
+            outline: none; 
+            border-radius: 15px;
+
+        }
+
+        input::placeholder {
+            color: #ffffff;
+            opacity: 0.3;
+        }
+        button { padding: 10px 15px;
+            cursor: pointer;
+            background: #d11081;
+            color: #ffffff;
+            border: none;
+            font-size: 18px;
+            border-radius: 50%;
+            margin-left: 10px;
+            transition: background 0.4s ease, transform 0.1s ease;}
+
+        button:hover {background: #0f9ad6;}
+        button:active {
+            background-color: #0f77a3;
+            transform: scale(0.95);
+        }
+        #p1 {color: white; text-align: right; margin-right: 2%;}
+        #p2 {color: white; text-align: left; margin-left: 2%;}
+        #title1 {display: flex;
+
+                margin-left: 1%;    padding: 1px; height: 70px;}
+        #title2 {color: white;}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 7px;
+    margin-top: 7px;
+    margin-right: 6px;}
+
+.bot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 9px;
+    margin-left: 6px;
+    margin-top: 9px;
+
+}
+
+.chat-bubble, .bot-bubble {
+    max-width: 60%;
+    padding: 10px;
+    /* border-radius: 15px; */
+    word-wrap: break-word;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.bot-bubble {
+    /* background: linear-gradient(135deg, #d11081, #ff79c6); */
+    background: linear-gradient(135deg, #f140a7, #f177bd);
+    align-self: flex-start;
+    border-radius: 1px 15px 15px 15px;
+}
+
+.chat-bubble {
+    background: linear-gradient(135deg, #35a8da, #81dbfc);
+    align-self: flex-end;
+    border-radius: 15px 1px 15px 15px;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <span id="title1">
+        <h1 style="color: rgb(0, 0, 0); margin-left: 2%; padding-bottom: 1px;">Sparx</h1>
+        <h1 style="color: #d11081;">A</h1>
+        <h1 style="color: #0f9ad6;">I</h1>
+    </span>
+    <div id="title2">
+        <h3 style="color: rgb(31, 31, 31);">
+        </h3>
+    </div>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Let's Chat...">
+    <button onclick="sendMessage()" class="fas">&#xf062;</button>
+
+
+    <script>
+
+const questions = [
+    "Hey! How's your day going?",
+    "What’s new with you?",
+    "How have you been?",
+    "Anything exciting happen today?",
+    "What’s been on your mind lately?",
+    "Hope you're having a good day! What’s up?",
+    "What’s a little secret you don’t mind sharing?",
+    "Have you been daydreaming about something (or someone)?",
+    "Did anything make you smile today?",
+    "How’s everything going for you?",
+    "Feeling motivated or just vibing today?",
+    "What’s something small that made your day better?",
+    "What’s something good that happened today?",
+    "How are things with you?",
+    "Is there anything you’re looking forward to?",
+    "How’s life treating you?",
+    "What’s been keeping you busy?",
+    "Hope today’s been kind to you! How are you feeling?"
+];
+
+        document.getElementById("userInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();}});
+
+        async function sendMessage() {
+     let userInput = document.getElementById("userInput").value.trim();
+    if (!userInput) return;
+
+    let chatbox = document.getElementById("chatbox");
+
+    // User message bubble
+    let userBubble = `<div class="chat-container">
+                        <div class="chat-bubble">${userInput}</div>
+                      </div>`;
+    chatbox.innerHTML += userBubble;
+
+    try {
+        let response = await fetch("http://127.0.0.1:8000/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: userInput })
+        });
+
+        let data = await response.json();
+
+        // Bot response bubble
+        let botBubble = `<div class="bot-container">
+                            <div class="bot-bubble">${data.reply}</div>
+                         </div>`;
+        chatbox.innerHTML += botBubble;
+    } catch (error) {
+        let errorBubble = `<div class="bot-container">
+                             <div class="bot-bubble">Error connecting to server.</div>
+                           </div>`;
+        chatbox.innerHTML += errorBubble;
+    }
+
+    // Clear input field
+    document.getElementById("userInput").value = "";
+}
+
+        function randomQuestion() {
+        let randomIndex = Math.floor(Math.random() * questions.length);
+         document.getElementById("title2").innerHTML = `<h3 style="color: rgb(73, 73, 73);">${questions[randomIndex]}</h3>`;
+        }
+
+
+        window.onload = randomQuestion;
+    </script>
+</body>
+</html>
