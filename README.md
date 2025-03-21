@@ -45,8 +45,9 @@ uvicorn backend.server:app --reload
 ---
 
 ## 3. Start the Frontend (HTML File)
-Simply open `index.html` in your browser. If you're using VS Code:
+Simply open `index.html` in your browser. 
 - Right-click `index.html`
+If you're using VS Code:
 - Select **Open with Live Server** (if installed) or open in your browser manually.
 
 ---
