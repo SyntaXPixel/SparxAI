@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Theme Toggle</title>
+    <style>
+        /* Light theme */
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Dark theme */
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        button.dark-mode {
+            background-color: #444;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button id="theme-toggle">Toggle Dark Mode</button>
+    <h1>Hello, World!</h1>
+    <p>This is a simple page to demonstrate dark theme toggling.</p>
+
+    <script>
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            themeToggleButton.classList.toggle('dark-mode');
+
+            // Optionally, store the theme preference in localStorage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check for saved theme preference on page load
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleButton.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

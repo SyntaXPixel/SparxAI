@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+    <title>Sparx AI</title>
+</head>
+<body>
+    <div id="container">
+        <span id="title1">
+            <h1 style="color: rgb(0, 0, 0); margin-left: 2%; padding-bottom: 1px;">Sparx</h1>
+            <h1 style="color: #d11081;">A</h1>
+            <h1 style="color: #0f9ad6;">I</h1>
+            <button onclick="themeChange()" id="themeButton" class="fa-duotone fa-solid fa-sun-bright fa-xl" style="--fa-primary-color: #e000a5; --fa-secondary-color: #e000a5;"></button>
+        </span>
+        <div id="title2">
+            <h3 style="color: rgb(31, 31, 31);"></h3>
+        </div>
+        <div id="chatbox-container">
+            <div class="blur-block"></div> <!-- Blur overlay -->
+            <div id="chatbox"></div> <!-- Chatbox stays unaffected -->
+        </div>
+        <input type="text" id="userInput" placeholder="Let's Chat...">
+        <button onclick="sendMessage()" id="sendButton" class="fas">&#xf062;</button>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
